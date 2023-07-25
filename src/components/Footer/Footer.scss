@@ -1,0 +1,12 @@
+@import "../../styles/variables";
+.footer {
+  background-color: $footer;
+  padding: 1rem;
+  &__container {
+  }
+  &__author {
+    text-align: center;
+    font-size: 1.2rem;
+    color: gray;
+  }
+}

@@ -3,6 +3,7 @@ import axios from "axios";
 
 const initialState = {
   products: [],
+  categories: [],
   status: "idle",
   error: null,
 };
@@ -13,6 +14,20 @@ export const fetchProducts = createAsyncThunk(
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/products`
+      );
+      return response.data;
+    } catch (err) {
+      return err;
+    }
+  }
+);
+
+export const fetchCategories = createAsyncThunk(
+  "products/fetchCategories",
+  async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/products/categories`
       );
       return response.data;
     } catch (err) {
@@ -38,7 +53,9 @@ const productsSlice = createSlice({
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        console.log(state.status);
+      })
+      .addCase(fetchCategories.fulfilled, (state, action) => {
+        state.categories = action.payload;
       });
   },
 });

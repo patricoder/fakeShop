@@ -6,9 +6,10 @@ import "./styles/index.scss";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { fetchProducts } from "./store/productsSlice";
+import { fetchCategories, fetchProducts } from "./store/productsSlice";
 
 store.dispatch(fetchProducts());
+store.dispatch(fetchCategories());
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
