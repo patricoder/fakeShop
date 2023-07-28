@@ -6,7 +6,8 @@ import "./styles/index.scss";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { fetchCategories, fetchProducts } from "./store/productsSlice";
+import { fetchProducts } from "./store/productsSlice";
+import { fetchCategories } from "./store/categoriesSlice";
 
 store.dispatch(fetchProducts());
 store.dispatch(fetchCategories());

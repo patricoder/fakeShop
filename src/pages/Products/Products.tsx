@@ -1,4 +1,4 @@
-import './Products.scss'
+import "./Products.scss";
 import { useSelector } from "react-redux";
 import {
   getProductsError,
@@ -6,6 +6,7 @@ import {
   selectAllProducts,
 } from "../../store/productsSlice";
 import Product from "../../components/Product/Product";
+import Filters from "../../components/Filters/Filters";
 
 const Products: React.FC = () => {
   const products = useSelector(selectAllProducts);
@@ -13,17 +14,21 @@ const Products: React.FC = () => {
   const error = useSelector(getProductsError);
 
   let content;
-
   if (productsStatus === "loading") {
     content = <p>Loading...</p>;
   } else if (productsStatus === "succeeded") {
     content = products.map((product: any) => {
-      return <Product product={product} key={product.id}/>;
+      return <Product product={product} key={product.id} />;
     });
   } else if (productsStatus === "failed") {
     content = <p>{error}</p>;
   }
-  return <div className="content">{content}</div>;
+  return (
+    <div className="content">
+      <Filters />
+      <div className="products">{content}</div>
+    </div>
+  );
 };
 
 export default Products;
