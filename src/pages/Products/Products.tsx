@@ -14,6 +14,7 @@ const Products: React.FC = () => {
   const error = useSelector(getProductsError);
 
   let content;
+
   if (productsStatus === "loading") {
     content = <p>Loading...</p>;
   } else if (productsStatus === "succeeded") {

@@ -2,7 +2,6 @@ import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  data: [],
   products: [],
   status: "idle",
   error: null,
@@ -26,11 +25,14 @@ const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    productsFilter(state, action) {
-      state.products = action.payload;
-    },
-    clearFilters(state, action) {
-     
+    onSetFilter(state, action) {
+      console.log(fetchProducts);
+      // const cat = action.payload;
+      // const filteredProducts = state.products.filter(
+      //   (item) => item.category === cat
+      // );
+      // state.products = filteredProducts;
+      // console.log(filteredProducts, cat);
     },
   },
   extraReducers(builder) {
@@ -51,11 +53,10 @@ const productsSlice = createSlice({
 });
 
 export const selectAllProducts = (state) => state.products.products;
-export const selectAllProductsData = (state) => state.products.data;
 export const getProductsStatus = (state) => state.products.status;
 export const getProductsError = (state) => state.products.error;
 
 // reducers
 
-export const { productsFilter, clearFilters } = productsSlice.actions;
+export const { onSetFilter } = productsSlice.actions;
 export default productsSlice.reducer;

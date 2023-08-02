@@ -3,17 +3,13 @@ import { getAllCategories } from "../../store/categoriesSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 import Button from "../Button/Button";
-import { clearFilters, selectAllProductsData } from "../../store/productsSlice";
-import { productsFilter } from "../../store/productsSlice";
-const Filters = () => {
-  const dispatch = useDispatch();
-  const getAllProducts = useSelector(selectAllProductsData);
+import { onSetFilter } from "../../store/productsSlice";
 
-  const onFilterClick = (cat: string) => {
-    const arr = getAllProducts.filter(
-      (product: any) => product.category === cat
-    );
-    dispatch(productsFilter(arr));
+const Filters: React.FC = () => {
+  const dispatch = useDispatch();
+
+  const onFilter = (cat: string) => {
+    dispatch(onSetFilter(cat));
   };
 
   const onClearFilter = () => {};
@@ -23,7 +19,7 @@ const Filters = () => {
     <p
       key={nanoid()}
       className="filters__categoryName"
-      onClick={() => onFilterClick(cat)}
+      onClick={() => onFilter(cat)}
     >
       {cat}
     </p>
