@@ -20,7 +20,6 @@ const Products: React.FC = () => {
   if (productsStatus === "loading") {
     content = <p>Loading...</p>;
   } else if (productsStatus === "succeeded") {
-    console.log("map");
     content = products?.map((product: IProduct) => {
       return <Product product={product} key={product.id} />;
     });

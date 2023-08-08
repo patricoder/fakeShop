@@ -5,20 +5,28 @@ import { nanoid } from "@reduxjs/toolkit";
 import Button from "../Button/Button";
 import {
   filterByCategory,
-  selectAllProducts,
   clearFilters,
+  selectAll,
 } from "../../store/productsSlice";
-import { ICategories } from "../../types/Categories.interface";
+import { IProducts } from "../../types/Products.interface";
 
 const Filters: React.FC = () => {
   const dispatch = useDispatch();
+
+  const onButtonClick = (cat: string) => {
+    dispatch(filterByCategory(cat));
+  };
+
+  const onClearFilters = () => {
+    dispatch(clearFilters());
+  };
 
   const fetchCategories = useSelector(getAllCategories);
   const renderCategories = fetchCategories.map((cat: string) => (
     <p
       key={nanoid()}
       className="filters__categoryName"
-      onClick={() => dispatch(filterByCategory(cat))}
+      onClick={() => onButtonClick(cat)}
     >
       {cat}
     </p>
@@ -30,7 +38,7 @@ const Filters: React.FC = () => {
       <Button
         text="Clear Filters"
         style="primary"
-        onClick={() => dispatch(clearFilters)}
+        fun={() => onClearFilters()}
       />
       <p className="filters__categoryHeader">
         Category &#40;{fetchCategories.length}&#41;

@@ -35,8 +35,7 @@ const productsSlice = createSlice({
       );
       state.filteredProducts = filteredArray;
     },
-    clearFilters(state, action) {
-      console.log("clear");
+    clearFilters(state) {
       state.filteredProducts = state.products;
     },
   },
@@ -49,7 +48,6 @@ const productsSlice = createSlice({
         state.status = "succeeded";
         state.products = action.payload;
         state.filteredProducts = action.payload;
-        console.log(action.payload);
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = "failed";
@@ -58,9 +56,9 @@ const productsSlice = createSlice({
   },
 });
 
+export const selectAll = (state: IState) => state.products.products;
 export const selectAllProducts = (state: IState) =>
   state.products.filteredProducts;
-
 export const getProductsStatus = (state: IState) => state.products.status;
 export const getProductsError = (state: IState) => state.products.error;
 

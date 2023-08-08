@@ -2,12 +2,16 @@ import "./Button.scss";
 type TButton = {
   text: string;
   style: string;
-  onClick: () => any;
+  fun: any;
 };
 
-const Button: React.FC<TButton> = ({ text, style }) => {
+const Button: React.FC<TButton> = ({ text, style, fun }) => {
   //style = "primary" || "secondary"
-  return <div className={"button " + style}>{text}</div>;
+  return (
+    <div className={"button " + style} onClick={fun}>
+      {text}
+    </div>
+  );
 };
 
 export default Button;
