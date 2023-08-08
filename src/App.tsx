@@ -8,7 +8,6 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Products />} />
-        
         {/* place for other routes */}
         <Route path="*" element={<NotFound />} />
       </Route>

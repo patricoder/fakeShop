@@ -2,7 +2,7 @@ import "./Button.scss";
 type TButton = {
   text: string;
   style: string;
-  onClick: any;
+  onClick: () => any;
 };
 
 const Button: React.FC<TButton> = ({ text, style }) => {

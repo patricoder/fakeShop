@@ -3,23 +3,22 @@ import { getAllCategories } from "../../store/categoriesSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 import Button from "../Button/Button";
-import { onSetFilter } from "../../store/productsSlice";
+import {
+  filterByCategory,
+  selectAllProducts,
+  clearFilters,
+} from "../../store/productsSlice";
+import { ICategories } from "../../types/Categories.interface";
 
 const Filters: React.FC = () => {
   const dispatch = useDispatch();
-
-  const onFilter = (cat: string) => {
-    dispatch(onSetFilter(cat));
-  };
-
-  const onClearFilter = () => {};
 
   const fetchCategories = useSelector(getAllCategories);
   const renderCategories = fetchCategories.map((cat: string) => (
     <p
       key={nanoid()}
       className="filters__categoryName"
-      onClick={() => onFilter(cat)}
+      onClick={() => dispatch(filterByCategory(cat))}
     >
       {cat}
     </p>
@@ -31,7 +30,7 @@ const Filters: React.FC = () => {
       <Button
         text="Clear Filters"
         style="primary"
-        onClick={() => onClearFilter()}
+        onClick={() => dispatch(clearFilters)}
       />
       <p className="filters__categoryHeader">
         Category &#40;{fetchCategories.length}&#41;

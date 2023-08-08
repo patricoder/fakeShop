@@ -1,11 +1,8 @@
+import { IProduct } from "../../types/Products.interface";
 import Rating from "../Rating/Rating";
 import "./Product.scss";
 
-type TProduct = {
-  product: any;
-};
-
-const Product: React.FC<TProduct> = ({ product }) => {
+const Product: React.FC<{ product: IProduct }> = ({ product }) => {
   return (
     <div className="card">
       <p className="card__category">{product.category}</p>

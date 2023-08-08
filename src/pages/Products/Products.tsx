@@ -1,5 +1,6 @@
 import "./Products.scss";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import {
   getProductsError,
   getProductsStatus,
@@ -7,6 +8,7 @@ import {
 } from "../../store/productsSlice";
 import Product from "../../components/Product/Product";
 import Filters from "../../components/Filters/Filters";
+import { IProduct } from "../../types/Products.interface";
 
 const Products: React.FC = () => {
   const products = useSelector(selectAllProducts);
@@ -18,7 +20,8 @@ const Products: React.FC = () => {
   if (productsStatus === "loading") {
     content = <p>Loading...</p>;
   } else if (productsStatus === "succeeded") {
-    content = products.map((product: any) => {
+    console.log("map");
+    content = products?.map((product: IProduct) => {
       return <Product product={product} key={product.id} />;
     });
   } else if (productsStatus === "failed") {
